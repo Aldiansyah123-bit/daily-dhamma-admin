@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Firebase\V3\Firebase;
+use Kreait\Firebase\Factory;
+use Kreait\Firebase\Database;
 use Illuminate\Http\Request;
 
 class QuestionAnswerController extends Controller
@@ -19,10 +20,15 @@ class QuestionAnswerController extends Controller
      */
     public function index()
     {
-        $firebase = Firebase::fromServiceAccount(storage_path().'/google-service-account.json');
-        $database = $firebase->getDatabase();
+        // $firebase = Firebase::fromServiceAccount(storage_path().'/google-service-account.json');
+        // $firebase = (new Factory)->fromServiceAccount(storage_path('google-service-account.json'));
+        // $database = $firebase->getDatabase();
 
-        $list_question_answer = $database->getReference('/question-answer')->getSnapshot()->getValue();
+        // $list_question_answer = $database->getReference('/question-answer')->getSnapshot()->getValue();
+        $firebase = (new Factory)->withServiceAccount(storage_path('google-service-account.json'))->withDatabaseUri('https://daily-dhamma-dev-default-rtdb.asia-southeast1.firebasedatabase.app');
+        $database = $firebase->createDatabase();
+
+        $list_question_answer = $database->getReference('/question-answer')->getValue();
 
         return view('question-answer.index')->with('list_question_answer', $list_question_answer);
     }
@@ -53,9 +59,10 @@ class QuestionAnswerController extends Controller
             'answer'   => 'required',
         ]);
 
-        $firebase = Firebase::fromServiceAccount(storage_path().'/google-service-account.json');
-
-        $database = $firebase->getDatabase();
+        // $firebase = Firebase::fromServiceAccount(storage_path().'/google-service-account.json');
+        // $database = $firebase->getDatabase();
+        $firebase = (new Factory)->withServiceAccount(storage_path('google-service-account.json'))->withDatabaseUri('https://daily-dhamma-dev-default-rtdb.asia-southeast1.firebasedatabase.app');
+        $database = $firebase->createDatabase();
 
         $question_answer = [
             'title'    => $request->get('title'),
@@ -96,8 +103,10 @@ class QuestionAnswerController extends Controller
      */
     public function edit($id)
     {
-        $firebase = Firebase::fromServiceAccount(storage_path().'/google-service-account.json');
-        $database = $firebase->getDatabase();
+        // $firebase = Firebase::fromServiceAccount(storage_path().'/google-service-account.json');
+        // $database = $firebase->getDatabase();
+        $firebase = (new Factory)->withServiceAccount(storage_path('google-service-account.json'))->withDatabaseUri('https://daily-dhamma-dev-default-rtdb.asia-southeast1.firebasedatabase.app');
+        $database = $firebase->createDatabase();
         $reference = $database->getReference('/question-answer/'.$id);
         $question_answer = $reference->getSnapshot()->getValue();
 
@@ -122,8 +131,10 @@ class QuestionAnswerController extends Controller
             'answer'   => 'required',
         ]);
 
-        $firebase = Firebase::fromServiceAccount(storage_path().'/google-service-account.json');
-        $database = $firebase->getDatabase();
+        // $firebase = Firebase::fromServiceAccount(storage_path().'/google-service-account.json');
+        // $database = $firebase->getDatabase();
+        $firebase = (new Factory)->withServiceAccount(storage_path('google-service-account.json'))->withDatabaseUri('https://daily-dhamma-dev-default-rtdb.asia-southeast1.firebasedatabase.app');
+        $database = $firebase->createDatabase();
 
         $question_answer = [
             'title'    => $request->get('title'),
@@ -147,8 +158,10 @@ class QuestionAnswerController extends Controller
      */
     public function editIndex($id)
     {
-        $firebase = Firebase::fromServiceAccount(storage_path().'/google-service-account.json');
-        $database = $firebase->getDatabase();
+        // $firebase = Firebase::fromServiceAccount(storage_path().'/google-service-account.json');
+        // $database = $firebase->getDatabase();
+        $firebase = (new Factory)->withServiceAccount(storage_path('google-service-account.json'))->withDatabaseUri('https://daily-dhamma-dev-default-rtdb.asia-southeast1.firebasedatabase.app');
+        $database = $firebase->createDatabase();
         $reference = $database->getReference('/question-answer/'.$id);
         $question_answer = $reference->getSnapshot()->getValue();
 
@@ -171,8 +184,10 @@ class QuestionAnswerController extends Controller
             'id' => 'required',
         ]);
 
-        $firebase = Firebase::fromServiceAccount(storage_path().'/google-service-account.json');
-        $database = $firebase->getDatabase();
+        // $firebase = Firebase::fromServiceAccount(storage_path().'/google-service-account.json');
+        // $database = $firebase->getDatabase();
+        $firebase = (new Factory)->withServiceAccount(storage_path('google-service-account.json'))->withDatabaseUri('https://daily-dhamma-dev-default-rtdb.asia-southeast1.firebasedatabase.app');
+        $database = $firebase->createDatabase();
 
         // check is key exists
         if ($database->getReference('/question-answer/'.$request->get('id'))->getValue() != null) {
@@ -206,8 +221,10 @@ class QuestionAnswerController extends Controller
      */
     public function destroy($id)
     {
-        $firebase = Firebase::fromServiceAccount(storage_path().'/google-service-account.json');
-        $database = $firebase->getDatabase();
+        // $firebase = Firebase::fromServiceAccount(storage_path().'/google-service-account.json');
+        // $database = $firebase->getDatabase();
+        $firebase = (new Factory)->withServiceAccount(storage_path('google-service-account.json'))->withDatabaseUri('https://daily-dhamma-dev-default-rtdb.asia-southeast1.firebasedatabase.app');
+        $database = $firebase->createDatabase();
         $database->getReference('/question-answer/'.$id)->remove();
 
         session(['notify' => 'delete article success']);
