@@ -23,8 +23,8 @@
                     <tr onclick="location.href='{{ url('question-answer/' . $key . '/edit') }}'" class="onclick-link">
                         <td>{{ $key }}</td>
                         <td>{{ $question_answer['title'] }}</td>
-                        <td>{{ str_limit(strip_tags($question_answer['question']), 100) }}</td>
-                        <td>{{ str_limit(strip_tags($question_answer['answer']), 100) }}</td>
+                        <td>{{ \Illuminate\Support\Str::limit(strip_tags($question_answer['question']), 100) }}</td>
+                        <td>{{ \Illuminate\Support\Str::limit(strip_tags($question_answer['answer']), 100) }}</td>
                     </tr>
                 @endforeach
                 @endif
