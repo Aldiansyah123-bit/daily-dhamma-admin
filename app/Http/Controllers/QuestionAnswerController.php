@@ -183,9 +183,7 @@ class QuestionAnswerController extends Controller
         $this->validate($request, [
             'id' => 'required',
         ]);
-
-        // $firebase = Firebase::fromServiceAccount(storage_path().'/google-service-account.json');
-        // $database = $firebase->getDatabase();
+        
         $firebase = (new Factory)->withServiceAccount(storage_path('google-service-account.json'))->withDatabaseUri('https://daily-dhamma-dev-default-rtdb.asia-southeast1.firebasedatabase.app');
         $database = $firebase->createDatabase();
 
