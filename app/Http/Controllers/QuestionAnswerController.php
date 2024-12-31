@@ -221,8 +221,6 @@ class QuestionAnswerController extends Controller
      */
     public function destroy($id)
     {
-        // $firebase = Firebase::fromServiceAccount(storage_path().'/google-service-account.json');
-        // $database = $firebase->getDatabase();
         $firebase = (new Factory)->withServiceAccount(storage_path('google-service-account.json'))->withDatabaseUri('https://daily-dhamma-dev-default-rtdb.asia-southeast1.firebasedatabase.app');
         $database = $firebase->createDatabase();
         $database->getReference('/question-answer/'.$id)->remove();
