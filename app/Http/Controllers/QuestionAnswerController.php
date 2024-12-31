@@ -158,8 +158,6 @@ class QuestionAnswerController extends Controller
      */
     public function editIndex($id)
     {
-        // $firebase = Firebase::fromServiceAccount(storage_path().'/google-service-account.json');
-        // $database = $firebase->getDatabase();
         $firebase = (new Factory)->withServiceAccount(storage_path('google-service-account.json'))->withDatabaseUri('https://daily-dhamma-dev-default-rtdb.asia-southeast1.firebasedatabase.app');
         $database = $firebase->createDatabase();
         $reference = $database->getReference('/question-answer/'.$id);
@@ -183,7 +181,7 @@ class QuestionAnswerController extends Controller
         $this->validate($request, [
             'id' => 'required',
         ]);
-        
+
         $firebase = (new Factory)->withServiceAccount(storage_path('google-service-account.json'))->withDatabaseUri('https://daily-dhamma-dev-default-rtdb.asia-southeast1.firebasedatabase.app');
         $database = $firebase->createDatabase();
 
