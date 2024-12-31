@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use Firebase\V3\Firebase;
+use Kreait\Firebase\Factory;
 use Illuminate\Console\Command;
 
 class DailyDhamma extends Command
@@ -41,10 +41,15 @@ class DailyDhamma extends Command
         // API access key from Google API's Console
         define('API_ACCESS_KEY', env('FIREBASE_WEB_API'));
 
-        $firebase = Firebase::fromServiceAccount(storage_path().'/google-service-account.json');
-        $database = $firebase->getDatabase();
-        $list_question_answer = $database->getReference('/question-answer')->getSnapshot()->getValue();
-        $list_question_answer_en = $database->getReference('/question-answer-en')->getSnapshot()->getValue();
+        // $firebase = Firebase::fromServiceAccount(storage_path().'/google-service-account.json');
+        // $database = $firebase->getDatabase();
+        // $list_question_answer = $database->getReference('/question-answer')->getSnapshot()->getValue();
+        // $list_question_answer_en = $database->getReference('/question-answer-en')->getSnapshot()->getValue();
+
+        $firebase = (new Factory)->withServiceAccount(storage_path('google-service-account.json'))->withDatabaseUri('https://daily-dhamma-dev-default-rtdb.asia-southeast1.firebasedatabase.app');
+        $database = $firebase->createDatabase();
+        $list_question_answer = $database->getReference('/question-answer')->getValue();
+        $list_question_answer_en = $database->getReference('/question-answer-en')->getValue();
         $array = [10100, 10200, 11600, 11900];
         $dhamma_today = $list_question_answer[$array[rand(0, 3)] + rand(1, 50)];
         $dhamma_today_en = $list_question_answer_en[$array[rand(0, 3)] + rand(1, 50)];

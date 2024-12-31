@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use Firebase\V3\Firebase;
+use Kreait\Firebase\Factory;
 use Illuminate\Console\Command;
 
 class PushNotificationNow extends Command
@@ -42,8 +42,11 @@ class PushNotificationNow extends Command
         define('API_ACCESS_KEY', env('FIREBASE_WEB_API'));
 
         // Device token, limit max 1000
-        $firebase = Firebase::fromServiceAccount(storage_path().'/google-service-account.json');
-        $database = $firebase->getDatabase();
+        // $firebase = Firebase::fromServiceAccount(storage_path().'/google-service-account.json');
+        // $database = $firebase->getDatabase();
+
+        $firebase = (new Factory)->withServiceAccount(storage_path('google-service-account.json'))->withDatabaseUri('https://daily-dhamma-dev-default-rtdb.asia-southeast1.firebasedatabase.app');
+        $database = $firebase->createDatabase();
 
         $tokens = $database->getReference('/devices/token')->getSnapshot()->getValue();
 
