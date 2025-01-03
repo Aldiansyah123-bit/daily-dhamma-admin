@@ -45,7 +45,8 @@ class PushNotificationNow extends Command
         // $firebase = Firebase::fromServiceAccount(storage_path().'/google-service-account.json');
         // $database = $firebase->getDatabase();
 
-        $firebase = (new Factory)->withServiceAccount(storage_path('google-service-account.json'))->withDatabaseUri('https://daily-dhamma-dev-default-rtdb.asia-southeast1.firebasedatabase.app');
+        // $firebase = (new Factory)->withServiceAccount(storage_path('google-service-account.json'))->withDatabaseUri('https://daily-dhamma-dev-default-rtdb.asia-southeast1.firebasedatabase.app');
+        $firebase = (new Factory)->withServiceAccount(config('firebase.service_account'))->withDatabaseUri(config('firebase.database_uri'));
         $database = $firebase->createDatabase();
 
         $tokens = $database->getReference('/devices/token')->getSnapshot()->getValue();

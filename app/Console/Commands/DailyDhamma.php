@@ -46,7 +46,8 @@ class DailyDhamma extends Command
         // $list_question_answer = $database->getReference('/question-answer')->getSnapshot()->getValue();
         // $list_question_answer_en = $database->getReference('/question-answer-en')->getSnapshot()->getValue();
 
-        $firebase = (new Factory)->withServiceAccount(storage_path('google-service-account.json'))->withDatabaseUri('https://daily-dhamma-dev-default-rtdb.asia-southeast1.firebasedatabase.app');
+        // $firebase = (new Factory)->withServiceAccount(storage_path('google-service-account.json'))->withDatabaseUri('https://daily-dhamma-dev-default-rtdb.asia-southeast1.firebasedatabase.app');
+        $firebase = (new Factory)->withServiceAccount(config('firebase.service_account'))->withDatabaseUri(config('firebase.database_uri'));
         $database = $firebase->createDatabase();
         $list_question_answer = $database->getReference('/question-answer')->getValue();
         $list_question_answer_en = $database->getReference('/question-answer-en')->getValue();
