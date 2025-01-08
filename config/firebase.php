@@ -16,21 +16,6 @@ return [
      * Firebase project configurations
      * ------------------------------------------------------------------------
      */
-    'service_account' => [
-        "type" => "service_account",
-        "project_id" => "daily-dhamma-dev",
-        "private_key_id" => "d6a158ed375d500a02ee42ca08ff4dcddfc83a5b",
-        "private_key" => "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDDIMuN667gV80U\nK//6ZfXNTcigPfyGo9p6awUQT5E2YfMT7xCX0xV0KB9StIpHXTHziUCW5ky/102q\nmD2tatOkP/3GIt/dvamXJDd0hY5XzRYqcRbb32i2iYE1rQ7uUCO6mUWzzj2VBhet\nX1HO76joJD1UeqYx1gWTbkv2NiR/q5/1dZ56DWt9Fx32VzGQY6Wb5JQl/u0ibVPQ\nVzo+E0SMNvXh8qVkbsCFmUuNK/oE7JCuRsZ21UGsgkkzikQeWb9ELQI0xOjm4eP/\nAYG91YonxO+q4/AGQV2W+5EvU7zS42TDk75QUh6/FbGujgzVljBxbDa52KMVEyFr\ncN/V++urAgMBAAECggEABCkTfgKrzjxTTkvfTW/V0ckH3Ntg64QAuS/qQhT8zSTT\n71oWNWnxahbVM5IGUsJ/cF8+Bhmmi7V2JtT0l7THVAXcaWq+On/p1JGqC5roiyG2\nY8ch8LZciP4dtapZLMs17Yb29JJt0dr5CvteYmPyfTt+3UULWEKJ5Ao072zHG7u7\n28zV0gmdyy0lKFFzIyaipLRezMNoSW84kOnSSRM3b2qeGDnCFOtKte6uXyOUKLX4\nn6j1yi/A9PYO6vRupghJQooRjndFQdJyZng0DBgazjqXhaN6zCyhCCz3xrHGnCI9\n672ZmRt0sB1BRYSmQeKRMEYgj/sqJU2Tiax8oEH75QKBgQDzuYJ2ykOCq8MLUSGM\nCk3DDXqfuwYweQ7t0NJkhNzlJznzT0mxPbnS2CmggPnjpv1oCSZOXxsvSfArecda\n2L420qypdhMuMFx6v9/c71YqB+Gg768eprCtrqqyWJftzp4Q4lRfCse9pwlLwnwm\nTVK7sqLFle3NE7hjdVvyJt68PQKBgQDM9LNg19fdIXOglQCrePZzdb6RSyyS/7H3\nDqQCJJu1StU9aOdROaBBS3ScfWKK1LsHUTsOStHFNEHDt91+9+Ob68gQ76Qhp/VY\nv1rCwhcmv0EJC7XsF7yk7Mc6edpwfMe0sVlnSBHAX3FPwcO2xoGTFNWdnNQ2nI1Z\nKrjQZGY+BwKBgD2l4dMsTDFEQvyc0/B5Nrwsr6SxiNo/9L/Av0b/uGQaLPVXS9uS\nMmubk8Pue8bSmWx0TAUs11J50E8e6YcYJdz2IwhmPmnDf9DosbZPr6rH/ZFYryIA\npdX4xWKBOETFq4O3zAGSV32oP5izI/YIPvINOFDkIJdr8ortx4kTvek9AoGACuoV\nC1kzM6FuaOTGbls4tJlWlqIsM3/OWFu9PCf66sKbbHPDrb2l3RRJl3PN5ZrCgvc+\nb9poJVpNDkEiWHqW8lyyAMTiNrCdDibSjICNfxC8Q+ENxQ7WiunZCjInAcqDUAoJ\nushJubbbb+XfqEIV8GExpv0NCAN6O39c7CwMjc0CgYAInJoT1Nwhw/oC8cC1WFLN\nvvGul18M9A5OZA3k08IPvXO6kXi4wey3O4QDszeUSbXbL/q2XCuxxq9MkkiO4JKC\noX2sDf0mUAHSLf53yGvyuP/hS9i3M72y5BlgwO97+FORhYeFyVFUuLqSoU53Tpzk\nq+qogdJUacTir6j2nZRhAw==\n-----END PRIVATE KEY-----\n",
-        "client_email" => "firebase-adminsdk-auafp@daily-dhamma-dev.iam.gserviceaccount.com",
-        "client_id" => "112425182411270380477",
-        "auth_uri" => "https://accounts.google.com/o/oauth2/auth",
-        "token_uri" => "https://oauth2.googleapis.com/token",
-        "auth_provider_x509_cert_url" => "https://www.googleapis.com/oauth2/v1/certs",
-        "client_x509_cert_url" => "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-auafp%40daily-dhamma-dev.iam.gserviceaccount.com",
-        "universe_domain" => "googleapis.com"
-    ],
-
-    'database_uri' => env('FIREBASE_DATABASE_URL'),
 
     'projects' => [
         'app' => [
