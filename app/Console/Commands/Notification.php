@@ -50,8 +50,15 @@ class Notification extends Command
                     ->withDatabaseUri(env('FIREBASE_DATABASE_URL')); 
         $database = $firebase->createDatabase();
 
-        $hour = date('H');
-        $tokens = $database->getReference('/devices/token')->orderByChild('notification_time')->equalTo('"'.$hour.':00"')->getSnapshot()->getValue();
+        $hour = date('H') . ':00';
+        $tokens = $database->getReference('/devices/token')
+                            ->orderByChild('notification_time')
+                            ->equalTo($hour);
+        // $tokens = $database->getReference('/devices/token')
+        //                    ->orderByChild('notification_time')
+        //                    ->equalTo('"'.$hour.':00"')
+        //                    ->getSnapshot()
+        //                    ->getValue();
 
         $registrationIds = [];
         foreach ($tokens as $key => $token) {
@@ -61,7 +68,6 @@ class Notification extends Command
                 $registrationIds = [];
             }
         }
-
         self::sendNotification($this->argument('message'), $registrationIds);
     }
 

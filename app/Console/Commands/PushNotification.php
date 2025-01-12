@@ -49,9 +49,16 @@ class PushNotification extends Command
                     ->withDatabaseUri(env('FIREBASE_DATABASE_URL')); 
         $database = $firebase->createDatabase();
 
-        $hour = date('H');
-        $tokens = $database->getReference('/devices/token')->orderByChild('notification_time')->equalTo('"'.$hour.':00"')->getSnapshot()->getValue();
-
+        $hour = date('H') . ':00';
+        
+        $tokens = $database->getReference('/devices/token')
+                            ->orderByChild('notification_time')
+                            ->equalTo($hour);
+        // $tokens = $database->getReference('/devices/token')
+        //                     ->orderByChild('notification_time')
+        //                     ->equalTo('"'.$hour.':00"')
+        //                     ->getSnapshot()
+        //                     ->getValue();
         $daily_dhamma = $database->getReference('/dhamma-today')->getValue();
 
         $registrationIds = [];
@@ -62,7 +69,7 @@ class PushNotification extends Command
                 $registrationIds = [];
             }
         }
-
+        
         PushNotification::sendNotification($daily_dhamma['title'], $registrationIds);
     }
 
